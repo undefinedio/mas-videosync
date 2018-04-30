@@ -14,8 +14,8 @@ set('repository', 'git@github.com:undefinedio/mas-videosync.git');
 set('git_tty', true);
 
 // Shared files/dirs between deploys 
-add('shared_files', []);
-add('shared_dirs', ['public/videos/']);
+add('shared_files', ['.env']);
+add('shared_dirs', []);
 
 // Writable dirs by web server 
 add('writable_dirs', []);
@@ -34,5 +34,5 @@ task('build', function () {
 after('deploy:failed', 'deploy:unlock');
 
 // Migrate database before symlink new release.
-before('deploy:symlink', 'artisan:migrate');
+// before('deploy:symlink', 'artisan:migrate');
 
