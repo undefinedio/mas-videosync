@@ -10388,24 +10388,26 @@ a.text-dark:focus {
   }
 }
 
-.navbar-laravel {
-  background-color: #fff;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+html,
+body {
+  padding: 0;
+  margin: 0;
 }
 
-.plyr__control,
-.plyr__controls {
-  opacity: 0;
-  pointer-events: none;
-  display: none;
-}
-
-#player {
+video {
   position: fixed;
   right: 0;
   bottom: 0;
   min-width: 100%;
   min-height: 100%;
+}
+
+.timer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: red;
+  padding: 1rem;
+  font-weight: bold;
 }
 

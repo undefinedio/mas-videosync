@@ -7,4 +7,4 @@ import Player from './player';
 
 require('./bootstrap');
 
-new Player('#player');
+new Player();
