@@ -77,7 +77,7 @@ $(document).ready(function () {
 
     var getTimeDiff = function () {
         beforeTime = Date.now();
-        $.ajax('/api/time', {
+        $.ajax(BASEURL + '/api/time', {
             type: 'GET',
             success: function (response) {
                 var now, timeDiff, serverTime, offset;
