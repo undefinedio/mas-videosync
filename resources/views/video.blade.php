@@ -15,7 +15,7 @@
     }
 
     video {
-        width: 100%;
+        height: 250px;
         display: block;
         position: relative;
     }
