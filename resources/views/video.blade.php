@@ -5,19 +5,29 @@
     <meta charset="UTF-8"/>
     <title>Video</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="<?= URL::to('/'); ?>/style.css">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
 </head>
 <body>
+<style>
+    .hidden {
+        opacity: 0;
+    }
+</style>
 <script>
     var BASEURL = '<?= URL::to('/'); ?>';
-    console.log('test base');
 </script>
-<button class="fullscreen">FULLSCREEN</button>
 
-<video autoplay muted loop playsinline
-       src="<?= URL::to('/'); ?>/videos/<?= $video; ?>.mp4"></video>
+<div class="loading js-loading">
+    Syncing video to server...
+</div>
+<div class="hidden js-hidden">
+    <button class="fullscreen">Klik hier!</button>
+    <br><br><br><br>
+
+    <video autoplay muted loop playsinline
+           src="<?= URL::to('/'); ?>/videos/<?= $cluster; ?>/<?= $video; ?>.mp4"></video>
+</div>
 
 <script src="<?= URL::to('/'); ?>/jquery.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="

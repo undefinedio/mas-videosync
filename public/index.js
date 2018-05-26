@@ -1,5 +1,7 @@
 var videos = document.querySelectorAll('video');
 var behavior = document.querySelector('#behavior');
+var hidden = document.querySelector('.js-hidden');
+var loading = document.querySelector('.js-loading');
 var averageOffset = 0;
 
 function enableButtons(video) {
@@ -21,26 +23,17 @@ function enableButtons(video) {
         var min = timestamp.getMinutes();
         var sec = timestamp.getSeconds();
         var mili = timestamp.getMilliseconds();
+
         //remove 10n1 from minutes and convert to seconds
         min = min.toString().split('').pop() * 60;
 
         // calculate where the video should be in secconds
         var total = min + sec + (mili / 1000) - averageOffset;
+
         var dif = video.currentTime - total;
-
-        // console.log('total:' + total);
-        // console.log('current:' + video.currentTime);
-        // console.log('Serveroffset: ' + averageOffset);
-        //console.log('dif:' + dif);
-
-        // set sync on exacly the right miliseonds
         if (dif < -0.2 || dif > 0.2) {
             video.currentTime = total;
         }
-
-        // if (video.paused) {
-        //     //video.play();
-        // }
     }, 25000);
 
     if (fullscreenButton) {
@@ -54,7 +47,6 @@ function enableVideos(everywhere) {
     for (var i = 0; i < videos.length; i++) {
         window.enableInlineVideo(videos[i], {everywhere: everywhere});
         enableButtons(videos[i]);
-        // debugEvents(videos[i]);
     }
 }
 
@@ -64,7 +56,7 @@ $(document).ready(function () {
     var maxTimes = 100;
     var beforeTime = null;
 
-// get average
+    // get average
     var mean = function (array) {
         var sum = 0;
 
@@ -96,6 +88,9 @@ $(document).ready(function () {
                     getTimeDiff();
                 } else {
                     averageOffset = mean(offsets) / 1000;
+
+                    hidden.className = hidden.className.replace(/\bhidden\b/g, "");
+                    loading.className += " " + 'hidden';
                     go();
                 }
             }
@@ -112,10 +107,6 @@ $(document).ready(function () {
             enableVideos();
         }
     };
-
-// populate 'offsets' array and return average offsets
-
-    //go();
 
     setInterval(function () {
         getTimeDiff();

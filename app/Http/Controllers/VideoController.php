@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 class VideoController extends Controller
 {
-    function view($id)
+    function view($cluster, $id)
     {
-        return view('video', ['video' => $id]);
+        return view('video', ['cluster' => $cluster, 'video' => $id]);
     }
 }

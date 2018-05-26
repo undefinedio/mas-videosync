@@ -34,4 +34,4 @@ Route::get('/api/time', function () {
     return ['time' => round(microtime(true) * 1000)];
 });
 
-Route::get('video/{id}', 'VideoController@view');
+Route::get('video/{cluster}/{id}', 'VideoController@view');
