@@ -9,33 +9,13 @@ function enableButtons(video) {
     var playBtn = video.parentNode.querySelector('.play');
     var fullscreenButton = video.parentNode.querySelector('.fullscreen');
 
-    if (playBtn) {
-        playBtn.addEventListener('click', function () {
-            if (video.paused) {
-                video.play();
-            } else {
-                video.pause();
-            }
-        });
-    }
+    console.log('test');
+
+    synchronize();
 
     setInterval(function () {
-        var timestamp = new Date();
-        var min = timestamp.getMinutes();
-        var sec = timestamp.getSeconds();
-        var mili = timestamp.getMilliseconds();
-
-        //remove 10n1 from minutes and convert to seconds
-        min = min.toString().split('').pop() * 60;
-
-        // calculate where the video should be in secconds
-        var total = min + sec + (mili / 1000) - averageOffset;
-
-        var dif = video.currentTime - total;
-        if (dif < -0.2 || dif > 0.2) {
-            video.currentTime = total;
-        }
-    }, 25000);
+        synchronize();
+    }, 10 * 1000);
 
     if (fullscreenButton) {
         fullscreenButton.addEventListener('click', function () {
@@ -44,9 +24,28 @@ function enableButtons(video) {
     }
 }
 
+function synchronize() {
+    var timestamp = new Date();
+    var min = timestamp.getMinutes();
+    var sec = timestamp.getSeconds();
+    var mili = timestamp.getMilliseconds();
+
+    //remove 10n1 from minutes and convert to seconds
+    min = min.toString().split('').pop() * 60;
+
+    // calculate where the video should be in secconds
+    var total = min + sec + (mili / 1000) - averageOffset;
+
+    var dif = video.currentTime - total;
+    if (dif < -0.04 || dif > 0.04) {
+        video.currentTime = total;
+        video.play();
+    }
+}
+
 function enableVideos(everywhere) {
     for (var i = 0; i < videos.length; i++) {
-        window.enableInlineVideo(videos[i], {everywhere: everywhere});
+        // window.enableInlineVideo(videos[i], {everywhere: everywhere});
         enableButtons(videos[i]);
     }
 }
@@ -89,6 +88,7 @@ $(document).ready(function () {
                     // Repeat
                     getTimeDiff();
                 } else {
+                    //synchronization complete
                     averageOffset = mean(offsets) / 1000;
 
                     hidden.className = hidden.className.replace(/\bhidden\b/g, "");
