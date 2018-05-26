@@ -2,6 +2,7 @@ var videos = document.querySelectorAll('video');
 var behavior = document.querySelector('#behavior');
 var hidden = document.querySelector('.js-hidden');
 var loading = document.querySelector('.js-loading');
+var loaded = document.querySelector('.js-loaded');
 var averageOffset = 0;
 
 function enableButtons(video) {
@@ -84,6 +85,7 @@ $(document).ready(function () {
                 // Push to array
                 offsets.push(offset)
                 if (counter < maxTimes) {
+                    loaded.innerHTML = counter;
                     // Repeat
                     getTimeDiff();
                 } else {

@@ -19,10 +19,10 @@
 </script>
 
 <div class="loading js-loading">
-    Syncing video to server...
+    Syncing video to server... <span class="js-loaded">0</span>%
 </div>
 <div class="hidden js-hidden">
-    <button class="fullscreen">Klik hier!</button>
+    <button class="fullscreen" style="padding: 20px">Klik hier voor fullscreen</button>
     <br><br><br><br>
 
     <video autoplay muted loop playsinline
