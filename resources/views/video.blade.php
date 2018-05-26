@@ -13,6 +13,12 @@
     .hidden {
         opacity: 0;
     }
+
+    video {
+        width: 100%;
+        display: block;
+        position: relative;
+    }
 </style>
 <script>
     var BASEURL = '<?= URL::to('/'); ?>';
@@ -22,17 +28,13 @@
     Syncing video to server... <span class="js-loaded">0</span>%
 </div>
 <div class="hidden js-hidden">
-    <button class="fullscreen" style="padding: 20px">Klik hier voor fullscreen</button>
-    <br><br><br><br>
-
-    <video autoplay muted loop playsinline
+    <video autoplay muted loop controls preload
            src="<?= URL::to('/'); ?>/videos/<?= $cluster; ?>/<?= $video; ?>.mp4"></video>
 </div>
 
 <script src="<?= URL::to('/'); ?>/jquery.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
-{{--<script src="<?= URL::to('/'); ?>/iphone-inline-video.js"></script>--}}
-<script src="<?= URL::to('/'); ?>/index.js"></script>
+<script src="<?= URL::to('/'); ?>/index.min.js"></script>
 </body>
 </html>

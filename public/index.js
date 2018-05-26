@@ -6,25 +6,14 @@ var loaded = document.querySelector('.js-loaded');
 var averageOffset = 0;
 
 function enableButtons(video) {
-    var playBtn = video.parentNode.querySelector('.play');
-    var fullscreenButton = video.parentNode.querySelector('.fullscreen');
-
-    console.log('test');
-
-    synchronize();
+    synchronize(video);
 
     setInterval(function () {
-        synchronize();
+        synchronize(video);
     }, 10 * 1000);
-
-    if (fullscreenButton) {
-        fullscreenButton.addEventListener('click', function () {
-            video.webkitEnterFullScreen();
-        });
-    }
 }
 
-function synchronize() {
+function synchronize(video) {
     var timestamp = new Date();
     var min = timestamp.getMinutes();
     var sec = timestamp.getSeconds();
@@ -37,18 +26,17 @@ function synchronize() {
     var total = min + sec + (mili / 1000) - averageOffset;
 
     var dif = video.currentTime - total;
-    if (dif < -0.04 || dif > 0.04) {
+    if (dif < -0.3 || dif > 0.3) {
         video.currentTime = total;
         video.play();
     }
 }
 
-function enableVideos(everywhere) {
+function enableVideos() {
     for (var i = 0; i < videos.length; i++) {
-        // window.enableInlineVideo(videos[i], {everywhere: everywhere});
         enableButtons(videos[i]);
     }
-}
+};
 
 $(document).ready(function () {
     var offsets = [];
@@ -93,21 +81,10 @@ $(document).ready(function () {
 
                     hidden.className = hidden.className.replace(/\bhidden\b/g, "");
                     loading.className += " " + 'hidden';
-                    go();
+                    enableVideos();
                 }
             }
         });
-    };
-
-    var go = function () {
-        if (location.search === '?enabled=false') {
-            behavior.innerHTML = '(module disabled everywhere via <code>?enabled=false</code>';
-        } else if (location.search === '?enabled=true') {
-            enableVideos(true);
-            behavior.innerHTML = '(module enabled everywhere (whether it’s necessary or not) via <code>?enabled=true</code>)';
-        } else {
-            enableVideos();
-        }
     };
 
     setInterval(function () {
