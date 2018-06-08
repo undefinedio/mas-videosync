@@ -28,7 +28,6 @@ function synchronize(video) {
     var dif = video.currentTime - total;
     if (dif < -0.3 || dif > 0.3) {
         video.currentTime = total;
-        video.play();
     }
 }
 
@@ -36,12 +35,12 @@ function enableVideos() {
     for (var i = 0; i < videos.length; i++) {
         enableButtons(videos[i]);
     }
-};
+}
 
 $(document).ready(function () {
     var offsets = [];
     var counter = 0;
-    var maxTimes = 100;
+    var maxTimes = 50;
     var beforeTime = null;
 
     // get average
@@ -70,9 +69,9 @@ $(document).ready(function () {
                 offset = now - serverTime;
 
                 // Push to array
-                offsets.push(offset)
+                offsets.push(offset);
                 if (counter < maxTimes) {
-                    loaded.innerHTML = counter;
+                    loaded.innerHTML = counter * 2;
                     // Repeat
                     getTimeDiff();
                 } else {
