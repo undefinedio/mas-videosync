@@ -10,7 +10,7 @@ function enableButtons(video) {
 
     setInterval(function () {
         synchronize(video);
-    }, 10 * 1000);
+    }, 5 * 1000);
 }
 
 function synchronize(video) {
@@ -21,11 +21,12 @@ function synchronize(video) {
 
     //remove 10n1 from minutes and convert to seconds
     min = min.toString().split('').pop() * 60;
-
+    // var min = 0;
     // calculate where the video should be in secconds
-    var total = min + sec + (mili / 1000) - averageOffset;
+    var total = (sec + (mili / 1000) - averageOffset);
 
     var dif = video.currentTime - total;
+
     if (dif < -0.3 || dif > 0.3) {
         video.currentTime = total;
     }
@@ -79,7 +80,7 @@ $(document).ready(function () {
                     averageOffset = mean(offsets) / 1000;
 
                     hidden.className = hidden.className.replace(/\bhidden\b/g, "");
-                    loading.className += " " + 'hidden';
+                    loading.style.display = 'none';
                     enableVideos();
                 }
             }

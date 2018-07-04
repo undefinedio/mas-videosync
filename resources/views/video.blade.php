@@ -35,6 +35,6 @@
 <script src="<?= URL::to('/'); ?>/jquery.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
-<script src="<?= URL::to('/'); ?>/index.min.js"></script>
+<script src="<?= URL::to('/'); ?>/index.js"></script>
 </body>
 </html>
